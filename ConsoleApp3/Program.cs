@@ -5,19 +5,29 @@ namespace ConsoleApp3
     internal class Program
     {
         // READ!!!!
-        // Я использовал byte вместо uint т.к
+        // Я использовал byte вместо uint т.к значения небольшие
 
-
+        /// <summary>
+        /// точка входп
+        /// </summary>
+        /// <param name="args"></param>
         static void Main(string[] args)
         {
             var person = GetInfo();
+
             PrintPerson(person);
+
             Console.ReadKey();
         }
 
+        /// <summary>
+        /// Метод печатающий значения из кортежа
+        /// </summary>
+        /// <param name="tuple"></param>
         static void PrintPerson((string name, string surname, byte age,
                 string[] pets, string[] favColors) tuple)
         {
+            Console.WriteLine();
 
             Console.WriteLine($"Name: {tuple.name} ");
             Console.WriteLine($"Surname: {tuple.surname} ");
@@ -40,12 +50,10 @@ namespace ConsoleApp3
             }
         }
 
-
         /// <summary>
-        /// 
+        /// Метод собирающий данные
         /// </summary>
         /// <returns></returns>
-
         static (string, string, byte, string[], string[]) GetInfo()
         {
 
@@ -74,7 +82,6 @@ namespace ConsoleApp3
 
             if (tempAns.ToLower() == "y")
             {
-                //havePet = true;
                 Console.WriteLine("How many pets do u have? ");
                 numPets = CheckedNum();
                 Person.pets = Pets(numPets);
@@ -82,12 +89,12 @@ namespace ConsoleApp3
             else if (tempAns.ToLower() == "n")
             {
 
-                ////havePet = false;
                 Person.pets = new string[0];
-                //Person.pets[0] = "Don't have a pet";
+
             }
 
             Console.WriteLine("How many colors do u like?");
+
             numColor = CheckedNum();
             Person.favColors = FavColors(numColor);
 
@@ -95,6 +102,11 @@ namespace ConsoleApp3
 
         }
 
+        /// <summary>
+        /// Функция возвращает массив с животными
+        /// </summary>
+        /// <param name="numPets"></param>
+        /// <returns></returns>
         static string[] Pets(byte numPets)
         {
             string[] petNames = new string[numPets];
@@ -111,6 +123,11 @@ namespace ConsoleApp3
             return petNames;
         }
 
+        /// <summary>
+        /// Функция возвращает массив с любимыми цветами
+        /// </summary>
+        /// <param name="numFavColors"></param>
+        /// <returns></returns>
         static string[] FavColors(byte numFavColors)
         {
             string[] tempFavColors = new string[numFavColors];
@@ -124,6 +141,11 @@ namespace ConsoleApp3
             return tempFavColors;
         }
 
+
+        /// <summary>
+        /// Функция проверяет введеные числовые значения
+        /// </summary>
+        /// <returns></returns>
         static byte CheckedNum()
         {
             byte correctNum;
@@ -150,6 +172,11 @@ namespace ConsoleApp3
             }
         }
 
+        /// <summary>
+        ///  Метод проверяет введеные строковые значения
+        /// Проверку на наличие цифр в строке не делал
+        /// </summary>
+        /// <returns></returns>
         static string ChekedString()
         {
             string correctValue = "";
